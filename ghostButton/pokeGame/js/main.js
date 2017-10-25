@@ -33,8 +33,7 @@ $(function (){
 			if(curTime == '0.000'){
 				$time.html('时间到');
 				//SetScore(count);
-				confirm('夏颖，你爱我吗？\n爱我=>"确定"\n非常爱我=>"取消"');
-				alert("我也爱你~\n夏颖，未来无论发生什么，我会一直陪着你~永远不要说分手这样的傻话了~");
+				alert("恭喜你获得分数：" + count);
 			}else{
 				$time.html(curTime + '秒');
 			}
