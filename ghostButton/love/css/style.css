@@ -1,0 +1,35 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+.box {
+	width: 500px;
+	margin: 0 auto;
+}
+
+.pic {
+	width: 320px;
+	margin: 0 auto;
+}
+.content {
+	font-family: "Microsoft YaHei";
+	font-size: 16px;
+	text-align: center;
+}
+.content .desc {
+	font-size: 20px;
+}
+.content span {
+	font-size: 24px;
+	font-weight: bold;
+	color: pink;
+}
+.date span {
+	font-size: 24px;
+	font-weight: bold;
+	color: red;
+}
+
+audio {
+	display: none;
+}
