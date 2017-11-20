@@ -2,6 +2,10 @@ html, body {
 	margin: 0;
 	padding: 0;
 }
+body {
+	font-family: "Microsoft YaHei";
+	background: #e7a3c1;
+}
 .box {
 	width: 350px;
 	margin: 0 auto;
@@ -9,10 +13,25 @@ html, body {
 
 .pic {
 	width: 320px;
+	height: 450px;
 	margin: 0 auto;
+	position: relative;
+}
+.pic img{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	opacity: 0;
+	-webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+}
+.pic .active{
+	opacity: 1;
 }
 .content {
-	font-family: "Microsoft YaHei";
+	font-family: 'Regular', cursive;
 	font-size: 16px;
 	text-align: center;
 }
@@ -22,12 +41,40 @@ html, body {
 .content span {
 	font-size: 24px;
 	font-weight: bold;
-	color: pink;
+	/*color: pink;*/
 }
 .date span {
 	font-size: 24px;
 	font-weight: bold;
-	color: red;
+	/*color: red;*/
+}
+.options {
+	width: 250px;
+	height: 80px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.options span {
+	display: inline-block;
+	width: 80px;
+	height: 80px;
+	color: white;
+	line-height: 80px;
+	text-align: center;
+	border-radius: 40px;
+	background: #7a7aff;
+	cursor: pointer;
+}
+.options .button-surpise {
+	width: 40px;
+	height: 40px;
+	color: white;
+	font-size: 12px;
+	line-height: 40px;
+	text-align: center;
+	border-radius: 20px;
+	background: #79da6d;
+	margin: 20px 20px;
 }
 
 audio {

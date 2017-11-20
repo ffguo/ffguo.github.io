@@ -8,8 +8,13 @@
 </head>
 <body>
 	<div class="box">
-		<div class="pic">
-			<img src="media/girl.png" width="320" alt="" />
+		<div id="pic-box" class="pic">
+			<img class="active" src="media/girl1.jpg" alt="" height="450" width="320">
+			<img src="media/girl2.jpg" alt="" height="450" width="320">
+			<img src="media/girl3.jpg" alt="" height="450" width="320">
+			<img src="media/girl4.jpg" alt="" height="450" width="320">
+			<img src="media/girl5.jpg" alt="" height="450" width="320">
+			<img src="media/girl6.jpg" alt="" height="450" width="320">
 		</div>
 		<div class="content">
 			<div class="desc">亲爱的<span>浪儿</span>，我们在一起已经</div>
@@ -17,13 +22,23 @@
 				
 			</div>
 		</div>
+		<div class="options">
+			<span id="button-music" class="button-music">下一首</span>
+			<span id="button-surpise" class="button-surpise">别点</span>
+			<span id="button-picture" class="button-picture">换一张</span>
+		</div>
 	</div>
 
-	<audio autoplay="autoplay">
-  		<source src="media/another_me_in_the_world.mp3" type="audio/mpeg" />
+	<audio id="music-player" autoplay="autoplay">
+  		<source src="media/music1.mp3" type="audio/mpeg" />
 		你的浏览器暂不支持该特性,请更换最新浏览器!
 	</audio>
 
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
+
+<!-- 换图片，换歌，改背景颜色 -->
+<!-- 按ctrl+f 然后输入9 -->
+<!-- 99669999996669999996699666699666999966699666699996999999996999999996996666996699669966996666999966999999999999999669966669969966669969966669999666699999999999966666999966699666699699666699996666669999999966666666996666996666996996666999966666666999966666666669966666996699669966669999666666666996666666666699666666999966669999996 -->
