@@ -1,7 +1,12 @@
-const PicCount = 5;
+const PicCount = 8;
 const MusicCount = 3;
 const ImportDate = new Date(2017,9,11,22,21,45);	//2017年10月11日
 
+//天气
+var weatherUrl = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20%3D%202132574&format=json";
+
+var WeatherType = '';
+var createSetInterval = null;
 
 Init();
 
@@ -15,28 +20,30 @@ function Init() {
 	//设置时间
 	UpdateCurrentDate();
 	setInterval(UpdateCurrentDate, 1000);
+	//设置天气
+	SetWeather();
 }
 
 //更新页面的时间
 function UpdateCurrentDate() {
-	var oDate = document.getElementById("date");
-	var dateHtml = GetCurrentDateHTML();
+	let oDate = document.getElementById("date");
+	let dateHtml = GetCurrentDateHTML();
 	oDate.innerHTML = dateHtml;
 }
 
 //获取与ImportDate的差值
 function GetCurrentDateHTML() {
-	var curTime = new Date();
+	let curTime = new Date();
 	//获取年月日时分秒差值
-	var diffTime = curTime.getTime() - ImportDate.getTime();
+	let diffTime = curTime.getTime() - ImportDate.getTime();
 	diffTime /= 1000;
 
-	var seconds = Math.floor(diffTime % 60),
+	let seconds = Math.floor(diffTime % 60),
 		minutes = Math.floor(diffTime / 60 % 60),
 		hours   = Math.floor(diffTime / 60 / 60 % 24),
 		day   	= Math.floor(diffTime / 60 / 60 / 24);
 
-	var html = "";
+	let html = "";
 	html += "<span>" + day + "</span>日";
 	html += "<span>" + hours + "</span>时";
 	html += "<span>" + minutes + "</span>分";
@@ -47,9 +54,9 @@ function GetCurrentDateHTML() {
 
 //获取问候
 function GetGreet() {
-	var curTime = new Date();
-	var hour = curTime.getHours();
-	var tip = "";
+	let curTime = new Date();
+	let hour = curTime.getHours();
+	let tip = "";
 
 	if(hour > 16) {
 		tip = "晚安";
@@ -64,22 +71,33 @@ function GetGreet() {
 
 //设置惊喜
 function SetSuprise() {
-	var oSuprise = document.getElementById("button-surpise");
+	let oBtnSuprise = document.getElementById("button-surpise");
+	let oClose = document.getElementById("close");
+	let oMask = document.getElementById("mask");
+	let oSuprise = document.getElementById("suprise");
 
-	oSuprise.onclick = function () {
+	oBtnSuprise.onclick = function () {
 		alert("蠢~");
+		oMask.style.display = 'block';
+		oSuprise.style.display = 'block';
+	};
+
+	oClose.onclick = function () {
+		oMask.style.display = 'none';
+		oSuprise.style.display = 'none';
 	};
 }
 
 //设置换下一张
 function SetPicture() {
-	var oPicture = document.getElementById("button-picture"),
+	let oPicture = document.getElementById("button-picture"),
 		oBox = document.getElementById("pic-box"),
 		aImages = oBox.getElementsByTagName("img");
 
 	oPicture.onclick = function (){
-		var index = Math.floor(Math.random() * PicCount);
-		for (var i = 0; i < aImages.length; i++) {
+		let index = Math.floor(Math.random() * PicCount);
+		console.log(index);
+		for (let i = 0; i < aImages.length; i++) {
 			aImages[i].className = "";
 		};
 		aImages[index].className = 'active';
@@ -88,7 +106,7 @@ function SetPicture() {
 
 //设置音乐下一首
 function SetMusic() {
-	var oMusic = document.getElementById("button-music"),
+	let oMusic = document.getElementById("button-music"),
 		oPlayer = document.getElementById("music-player");
 
 	oMusic.onclick = function (){
@@ -102,9 +120,69 @@ function SetMusic() {
 
 //获取随机音乐地址
 function GetRandomMusicUrl() {
-	var index = Math.ceil(Math.random() * MusicCount);
-	var url = "media/music" + index + ".mp3";
+	let index = Math.ceil(Math.random() * MusicCount);
+	let url = "media/music" + index + ".mp3";
 	return url;
+}
+
+
+// 启动天气
+function SetWeather()
+{
+	axios.get(weatherUrl)
+	    .then(function (response) {
+	        var data = response.data;
+	        // 获取天气结果
+	        var city = data.query.results.channel.location.city;
+	        var forecast = data.query.results.channel.item.forecast;
+	        WeatherType = forecast[0].text;
+	        WeatherType = (WeatherType.indexOf('Snow') >= 0) ? 'Snow' : WeatherType;
+	        console.log(WeatherType);
+	        WeatherType = WeatherType.toLowerCase();
+	    })
+	    .then(function (){
+	        createWeatherInterval();
+	        clearWeatherInterval();
+	    })
+	    .catch(function (error) {
+	        console.log(error);
+	    });
+}
+
+
+// 创建下天气定时器
+function createWeatherInterval()
+{
+    createSetInterval = setInterval(createWeathers, 500);
+}
+
+// 创建清理天气定时器
+function clearWeatherInterval()
+{
+    setTimeout(() => {
+        clearInterval(createSetInterval);
+    }, 5000);
+    //setInterval(clearWeathers, 3000);
+}
+
+// 创建许多天气图标
+function createWeathers()
+{
+    let count = Math.ceil(Math.random() * 20);
+    for (let i = 0; i < count; i++) {
+        createWeather();
+    }
+}
+
+// 创建一个天气图标
+function createWeather()
+{
+    let oBox = document.getElementById('weather-box');
+    let oWeater = document.createElement('div');
+    let disLeft = Math.ceil(Math.random() * (parseInt(screen.width) - 10));
+    oWeater.className = 'weather ' + WeatherType;
+    oWeater.style.left = disLeft + 'px';
+    oBox.appendChild(oWeater);
 }
 
 // **************

@@ -1,10 +1,14 @@
 html, body {
+	width: 100%;
+	height: 100%;
 	margin: 0;
 	padding: 0;
 }
 body {
 	font-family: "Microsoft YaHei";
 	background: #e7a3c1;
+	position: relative;
+	overflow: hidden;
 }
 .box {
 	width: 350px;
@@ -77,6 +81,76 @@ body {
 	margin: 20px 20px;
 }
 
+/*天气*/
+.weather-box {
+	width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+.weather {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation:mymove 5s infinite;
+    -webkit-animation:mymove 5s infinite;
+    z-index: 22;
+} 
+.snow {
+    background: url(../media/snow.png) no-repeat;
+}
+.rain {
+    background: url(../media/rain.png) no-repeat;
+}
+@keyframes mymove
+{
+    from {top:0;}
+    to {top:100%;}
+}
+
+/*遮罩*/
+.mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #ccc;
+	opacity: 0.8;
+	display: none;
+}
+#close {
+	width: 10px;
+	height: 10px;
+	margin-right: 5px;
+	float: right;
+	cursor: pointer;
+}
+.suprise {
+	display: none;
+	width: 450px;
+	height: 250px;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: white;
+}
+.suprise-content {
+	width: 450px;
+	word-wrap: break-word;
+}
+
 audio {
 	display: none;
+}
+
+.clear {
+	clear: both;
 }
