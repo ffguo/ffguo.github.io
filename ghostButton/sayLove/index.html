@@ -7,7 +7,7 @@
     <title>我爱你</title>
     <style type="text/css">
     #box{
-        width: 500px;
+        width: 400px;
         margin: 0 auto;
         text-align: center;
     }
@@ -30,6 +30,7 @@
 </head>
 <body>
     <div id="box">
+        <h1></h1>
         <h1>你做我女朋友好吗？</h1>
         <div id="btn-box">
             <input type="button" value="好" style="margin-right: 30px;">
@@ -54,11 +55,11 @@
             var url = location.href;
             if(url.split('=').length === 2)
             {
-                name = decodeURI(url.split('=')[1]) + ',';
+                name = decodeURI(url.split('=')[1]);
             }
             var oContent = document.getElementsByTagName("h1")[0];
-            oContent.innerText = name + '你做我女朋友好吗？';
-            document.title = name + "我爱你";
+            oContent.innerText = name;
+            document.title = name + "，我爱你";
         }
     </script>
 </body>
