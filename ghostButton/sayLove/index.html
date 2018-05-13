@@ -7,7 +7,7 @@
     <title>我爱你</title>
     <style type="text/css">
     #box{
-        width: 400px;
+        width: 300px;
         margin: 0 auto;
         text-align: center;
     }
@@ -59,7 +59,7 @@
             }
             var oContent = document.getElementsByTagName("h1")[0];
             oContent.innerText = name;
-            document.title = name + "，我爱你";
+            document.title = name + (name === "" ? "" : "，") + "我爱你";
         }
     </script>
 </body>
