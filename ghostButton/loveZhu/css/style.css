@@ -1,0 +1,156 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: "Microsoft YaHei";
+	background: #e7a3c1;
+	position: relative;
+	overflow: hidden;
+}
+.box {
+	width: 350px;
+	margin: 0 auto;
+}
+
+.pic {
+	width: 320px;
+	height: 420px;
+	margin: 0 auto;
+	position: relative;
+}
+.pic img{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	opacity: 0;
+	-webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+}
+.pic .active{
+	opacity: 1;
+}
+.content {
+	font-family: 'Regular', cursive;
+	font-size: 16px;
+	text-align: center;
+}
+.content .desc {
+	font-size: 20px;
+}
+.content span {
+	font-size: 24px;
+	font-weight: bold;
+	/*color: pink;*/
+}
+.date span {
+	font-size: 24px;
+	font-weight: bold;
+	/*color: red;*/
+}
+.options {
+	width: 250px;
+	height: 80px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.options span {
+	display: inline-block;
+	width: 80px;
+	height: 80px;
+	color: white;
+	line-height: 80px;
+	text-align: center;
+	border-radius: 40px;
+	background: #7a7aff;
+	cursor: pointer;
+}
+.options .button-surpise {
+	width: 40px;
+	height: 40px;
+	color: white;
+	font-size: 12px;
+	line-height: 40px;
+	text-align: center;
+	border-radius: 20px;
+	background: #79da6d;
+	margin: 20px 20px;
+}
+
+/*天气*/
+.weather-box {
+	width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+.weather {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation:mymove 5s infinite;
+    -webkit-animation:mymove 5s infinite;
+    z-index: 22;
+} 
+.xue {
+    background: url(../media/snow.png) no-repeat;
+}
+.yu {
+    background: url(../media/rain.png) no-repeat;
+}
+@keyframes mymove
+{
+    from {top:0;}
+    to {top:100%;}
+}
+
+/*遮罩*/
+.mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #ccc;
+	opacity: 0.8;
+	display: none;
+}
+#close {
+	width: 10px;
+	height: 10px;
+	margin-right: 5px;
+	float: right;
+	cursor: pointer;
+}
+.suprise {
+	display: none;
+	width: 450px;
+	height: 250px;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: white;
+}
+.suprise-content {
+	width: 450px;
+	word-wrap: break-word;
+}
+
+audio {
+	display: none;
+}
+
+.clear {
+	clear: both;
+}
