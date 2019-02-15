@@ -133,9 +133,9 @@ function SetWeather()
 {
 	axios.get(weatherUrl)
 	    .then(function (response) {
-	        var data = response.data.data;
+			var data = response.data.data;
 	        // 获取天气结果
-			WeatherType = data[0].wea_img;
+			WeatherType = data[0].wea.indexOf("雪") >= 0 ? "xue" : data[0].wea_img;
 	        WeatherType = WeatherType.toLowerCase();
 	    })
 	    .then(function (){
