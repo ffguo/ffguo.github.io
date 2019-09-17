@@ -17,6 +17,13 @@ $(function (){
 	})
 
 	function start(){
+		var url = location.href;
+		var name = "";
+		if(url.split('=').length === 2)
+		{
+			name = decodeURI(url.split('=')[1]);
+		}
+
 		status = 'started';
 		$btn.html(++count);
 		var counter = setInterval(timer, 7),
@@ -33,7 +40,7 @@ $(function (){
 			if(curTime == '0.000'){
 				$time.html('时间到');
 				//SetScore(count);
-				alert("恭喜你获得分数：" + count);
+				alert("恭喜" + name + "获得分数：" + count);
 			}else{
 				$time.html(curTime + '秒');
 			}
