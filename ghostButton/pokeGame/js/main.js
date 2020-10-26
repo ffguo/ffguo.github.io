@@ -52,6 +52,7 @@ $(function (){
 
 	function SetScore(score)
 	{
+		asd
 	    $.post("GetScore.ashx", { "action": "SetMaxScore", "score": score }, function (data) {
 	        var datas = data.split(":");
 	        var state = datas[0];
