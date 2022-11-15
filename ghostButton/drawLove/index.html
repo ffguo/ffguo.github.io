@@ -41,7 +41,7 @@ canvas {
     text-shadow: 5px 5px 5px pink, 0px 0px 2px pink; 
 }
 </style>
-<body>
+<body id="body">
     <canvas id="pinkboard">
     </canvas>
     <div id="fonts">疯疯过</div>
@@ -288,14 +288,52 @@ Init();
 
 function Init()
 {
-    var name='';
-    var url = location.href;
-    if(url.split('=').length === 2)
+    var name=getParmValue('name');
+    var isShow=getParmValue('isShow');
+    console.log(name);
+    console.log(isShow);
+    name = name === '' ? '疯疯过' : name;
+
+    var oFont=document.getElementById("fonts");
+    oFont.innerText=name;
+
+    if (isShow === '' || !isShow)
+        return;
+
+    var colors = ['#7FFFD4', '#00FFFF', '#FFFFE0', '#FFD700', '#FF7F50', '#EE82EE'];
+    var oBody=document.getElementById("body");
+    var colorLength = colors.length;
+    var bodyWidth = oBody.offsetWidth;
+    var bodyHeight = oBody.offsetHeight;
+    console.log(oBody.offsetWidth + '-' + oBody.offsetHeight);
+    for(var i=0; i < 80; i++)
     {
-        name = decodeURI(url.split('=')[1]);
+        var oDiv = document.createElement('div');
+        oDiv.style.color = colors[i % colorLength];
+        oDiv.style.position = 'absolute';
+        oDiv.style.left = Math.floor(Math.random()*bodyWidth) + 'px';
+        oDiv.style.top = Math.floor(Math.random()*bodyHeight) + 'px';
+        oDiv.style.opacity = Math.random();
+        oDiv.style.fontSize = (Math.floor(Math.random()*30) + 10) + 'px';
+        oDiv.innerText = name;
+        oBody.appendChild(oDiv);
     }
-    var oDiv=document.getElementById("fonts");
-    oDiv.innerText=name === '' ? '疯疯过' : name;
+}
+
+function getParmValue(name)
+{
+    var url = location.href;
+    var parmStr = url.split('?')[1];
+    if (parmStr === undefined)
+        return '';
+    var parms = parmStr.split('&');
+    for (let index = 0; index < parms.length; index++) {
+        const el = parms[index];
+        var els = el.split('=');
+        if(els[0] === name)
+            return decodeURI(els[1]);
+    }
+    return '';
 }
  
     </script>
