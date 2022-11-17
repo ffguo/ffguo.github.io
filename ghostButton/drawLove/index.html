@@ -40,6 +40,21 @@ canvas {
     font-size: 65px;
     text-shadow: 5px 5px 5px pink, 0px 0px 2px pink; 
 }
+.names {
+    animation-name: example1;
+    animation-iteration-count: infinite;
+    animation-duration: 4s;
+}
+@keyframes example {
+  0% {margin-top: 0;}
+  50% {margin-top: 50px;}
+  100% {margin-top: 0px;}
+}
+@keyframes example1 {
+  0% {opacity: 1;}
+  50% {opacity: 0;}
+  100% {opacity: 1;}
+}
 </style>
 <body id="body">
     <canvas id="pinkboard">
@@ -309,12 +324,14 @@ function Init()
     for(var i=0; i < 80; i++)
     {
         var oDiv = document.createElement('div');
+        oDiv.setAttribute('class', 'names')
         oDiv.style.color = colors[i % colorLength];
         oDiv.style.position = 'absolute';
         oDiv.style.left = Math.floor(Math.random()*bodyWidth) + 'px';
         oDiv.style.top = Math.floor(Math.random()*bodyHeight) + 'px';
         oDiv.style.opacity = Math.random();
         oDiv.style.fontSize = (Math.floor(Math.random()*30) + 10) + 'px';
+        oDiv.style.animationDuration = Math.floor(Math.random()*5) + 1 + 's';
         oDiv.innerText = name;
         oBody.appendChild(oDiv);
     }
